@@ -1,0 +1,13 @@
+<!-- Put your own values in config.xml to override these defaults -->
+<config>
+    <horizontal-resolution>1280</horizontal-resolution>
+    <vertical-resolution>720</vertical-resolution>
+    <!-- <node-app-path>/path/to/app.js</node-app-path> -->
+    <!-- <mixer-key>YOURMIXERKEY</mixer-key> -->
+    <!-- <roms>
+        <rom
+            name="GoldenEye 007"
+            file-path="/home/hayden/Downloads/Roms/GoldenEye007.z64"
+            default="default" />
+    </roms> -->
+</config>
