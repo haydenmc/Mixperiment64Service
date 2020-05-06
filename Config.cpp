@@ -151,7 +151,6 @@ void Config::loadConfigFile(std::string fileName)
             }
             rom.Name = std::string(nameText);
             rom.FilePath = std::string(filePathText);
-            rom.IsDefault = currentRomElement->BoolAttribute("default", false);
             this->roms.push_back(rom);
             std::cout << 
                 "CONFIG: Added rom `" << 

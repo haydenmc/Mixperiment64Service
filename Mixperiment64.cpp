@@ -1,4 +1,5 @@
 #include "Mixperiment64.h"
+#include <stdexcept>
 
 #pragma region Constructor/Destructor
 Mixperiment64::Mixperiment64(std::shared_ptr<Config> config) : 
@@ -17,7 +18,13 @@ Mixperiment64::Mixperiment64(std::shared_ptr<Config> config) :
             config->GetVerticalResolution(),
             config->GetMixerKey());
     }
-    this->nodeManager = std::make_unique<NodeManager>();
+    this->nodeManager = std::make_unique<NodeManager>(config->GetNodeAppPath());
+    std::vector<Rom> roms = config->GetRoms();
+    if (roms.size() <= 0)
+    {
+        throw std::invalid_argument("No roms defined in configuration.");
+    }
+    this->currentRom = roms.at(0);
     this->init();
 }
 #pragma endregion
@@ -27,7 +34,7 @@ void Mixperiment64::Start()
 {
     if (this->mupenManager != nullptr)
     {
-        this->mupenManagerThread = std::thread(&MupenManager::Start, this->mupenManager.get());
+        this->mupenManagerThread = std::thread(&MupenManager::Start, this->mupenManager.get(), this->currentRom);
     }
 
     if (this->streamer != nullptr)

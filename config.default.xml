@@ -7,7 +7,6 @@
     <!-- <roms>
         <rom
             name="GoldenEye 007"
-            file-path="/home/hayden/Downloads/Roms/GoldenEye007.z64"
-            default="default" />
+            file-path="/home/hayden/Downloads/Roms/GoldenEye007.z64" />
     </roms> -->
 </config>

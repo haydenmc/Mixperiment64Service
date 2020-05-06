@@ -22,6 +22,7 @@ private:
 
     /* Private members */
     std::shared_ptr<Config> config;
+    Rom currentRom;
 
     /* Helper threads */
     std::thread mupenManagerThread;

@@ -1,7 +1,6 @@
 #include "MupenManager.h"
 #include <iostream>
 #include <sys/prctl.h>
-#include <sys/types.h>
 #include <sys/wait.h>
 #include <stdexcept>
 #include <unistd.h>
@@ -21,7 +20,7 @@ MupenManager::MupenManager(
 #pragma endregion
 
 #pragma region Public methods
-void MupenManager::Start()
+void MupenManager::Start(Rom rom)
 {
     // Fork off for mupen64 program
     pid_t originalPid = getpid();
@@ -54,13 +53,16 @@ void MupenManager::Start()
             "--resolution", resolutionStr.str().c_str(),
             "--input", "/home/hayden/Source/mupen64plus-input-udp/build/libmupen64plus-input-udp.so",
             "--gfx", "mupen64plus-video-rice",
-            "/home/hayden/Downloads/MP2.z64",
+            rom.FilePath.c_str(),
             NULL);
     }
     else
     {
+        // Store pid
+        this->mupenPid = mupenPid;
+        std::cout << "Mupen started - PID `" << this->mupenPid << "`" << std::endl;
         // Wait for mupen
-        wait(&status);
+        waitpid(this->mupenPid, &status, 0);
         std::cout << "Mupen exited with status " << std::to_string(status) << std::endl;
     }
 }

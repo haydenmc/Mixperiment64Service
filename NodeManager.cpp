@@ -7,7 +7,8 @@
 #include <stdexcept>
 
 #pragma region Constructor/Destructor
-NodeManager::NodeManager()
+NodeManager::NodeManager(std::string nodeAppPath)
+    : nodeAppPath(nodeAppPath)
 { }
 #pragma endregion
 
@@ -37,13 +38,16 @@ void NodeManager::Start()
         }
         // Spin up node
         execlp("node", "node",
-            "/home/hayden/Source/Mixer64/build/app.js",
+            this->nodeAppPath.c_str(),
             NULL);
     }
     else
     {
+        // Store PID
+        this->nodePid = nodePid;
+        std::cout << "Node started - PID `" << this->nodePid << "`" << std::endl;
         // Wait for node
-        wait(&status);
+        waitpid(this->nodePid, &status, 0);
         std::cout << "Node exited with status " << status << std::endl;
     }
 }

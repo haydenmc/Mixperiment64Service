@@ -1,4 +1,6 @@
 #pragma once
+#include "Config.h"
+#include <sys/types.h>
 
 class MupenManager
 {
@@ -10,7 +12,7 @@ public:
     //~MupenManager();
 
     /* Public methods */
-    void Start();
+    void Start(Rom rom);
 private:
     /* Private methods */
     void init();
@@ -18,4 +20,5 @@ private:
     /* Private members */
     unsigned int horizontalResolution;
     unsigned int verticalResolution;
+    pid_t mupenPid;
 };

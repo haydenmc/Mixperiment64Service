@@ -1,10 +1,12 @@
 #pragma once
+#include <string>
+#include <sys/types.h>
 
 class NodeManager
 {
 public:
     /* Constructor/Destructor */
-    NodeManager();
+    NodeManager(std::string nodeAppPath);
     //~NodeManager();
 
     /* Public methods */
@@ -13,4 +15,8 @@ public:
 private:
     /* Private methods */
     void init();
+
+    /* Private members */
+    std::string nodeAppPath;
+    pid_t nodePid;
 };

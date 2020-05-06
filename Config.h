@@ -6,7 +6,6 @@ struct Rom
 {
     std::string FilePath;
     std::string Name;
-    bool IsDefault;
 };
 
 class Config
