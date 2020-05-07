@@ -7,8 +7,13 @@
 #include <stdexcept>
 
 #pragma region Constructor/Destructor
-NodeManager::NodeManager(std::string nodeAppPath)
-    : nodeAppPath(nodeAppPath)
+NodeManager::NodeManager(std::string nodeAppPath,
+    std::string nodeHttpsKeyPath,
+    std::string nodeHttpsCertPath
+) : 
+    nodeAppPath(nodeAppPath),
+    nodeHttpsKeyPath(nodeHttpsKeyPath),
+    nodeHttpsCertPath(nodeHttpsCertPath)
 { }
 #pragma endregion
 
@@ -39,6 +44,8 @@ void NodeManager::Start()
         // Spin up node
         execlp("node", "node",
             this->nodeAppPath.c_str(),
+            "--key", this->nodeHttpsKeyPath.c_str(),
+            "--cert", this->nodeHttpsCertPath.c_str(),
             NULL);
     }
     else

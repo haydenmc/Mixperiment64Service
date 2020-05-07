@@ -3,6 +3,8 @@
     <horizontal-resolution>1280</horizontal-resolution>
     <vertical-resolution>720</vertical-resolution>
     <!-- <node-app-path>/path/to/app.js</node-app-path> -->
+    <!-- <node-https-key-path></node-https-key-path>
+    <node-https-cert-path></node-https-cert-path> -->
     <!-- <mixer-key>YOURMIXERKEY</mixer-key> -->
     <!-- <roms>
         <rom

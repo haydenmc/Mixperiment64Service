@@ -6,7 +6,9 @@ class NodeManager
 {
 public:
     /* Constructor/Destructor */
-    NodeManager(std::string nodeAppPath);
+    NodeManager(std::string nodeAppPath,
+        std::string nodeHttpsKeyPath,
+        std::string nodeHttpsCertPath);
     //~NodeManager();
 
     /* Public methods */
@@ -18,5 +20,7 @@ private:
 
     /* Private members */
     std::string nodeAppPath;
+    std::string nodeHttpsKeyPath;
+    std::string nodeHttpsCertPath;
     pid_t nodePid;
 };

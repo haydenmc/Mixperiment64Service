@@ -32,6 +32,11 @@ void Config::ParseArgs(unsigned int argc, char* argv[])
             std::cout << "CONFIG: Streaming disabled." << std::endl;
             this->noStream = true;
         }
+        else if (strcmp(argv[i], "--no-node") == 0)
+        {
+            std::cout << "CONFIG: Node disabled." << std::endl;
+            this->noNode = true;
+        }
     }
 }
 
@@ -60,6 +65,16 @@ const std::string Config::GetNodeAppPath()
     return this->nodeAppPath;
 }
 
+const std::string Config::GetNodeHttpsKeyPath()
+{
+    return this->nodeHttpsKeyPath;
+}
+
+const std::string Config::GetNodeHttpsCertPath()
+{
+    return this->nodeHttpsCertPath;
+}
+
 const bool Config::GetNoStream()
 {
     return this->noStream;
@@ -68,6 +83,11 @@ const bool Config::GetNoStream()
 const bool Config::GetNoMupen()
 {
     return this->noMupen;
+}
+
+const bool Config::GetNoNode()
+{
+    return this->noNode;
 }
 #pragma endregion
 
@@ -120,6 +140,28 @@ void Config::loadConfigFile(std::string fileName)
         {
             this->nodeAppPath = std::string(nodeAppPathText);
             std::cout << "CONFIG: Node app path: `" << this->nodeAppPath << "`" << std::endl;
+        }
+    }
+
+    // Node HTTPS key path
+    if (const XMLElement* el = rootElement->FirstChildElement("node-https-key-path"))
+    {
+        const char* text = el->GetText();
+        if (text != nullptr)
+        {
+            this->nodeHttpsKeyPath = std::string(text);
+            std::cout << "CONFIG: Node https key path: `" << this->nodeHttpsKeyPath << "`" << std::endl;
+        }
+    }
+
+    // Node HTTPS cert path
+    if (const XMLElement* el = rootElement->FirstChildElement("node-https-cert-path"))
+    {
+        const char* text = el->GetText();
+        if (text != nullptr)
+        {
+            this->nodeHttpsCertPath = std::string(text);
+            std::cout << "CONFIG: Node https cert path: `" << this->nodeHttpsCertPath << "`" << std::endl;
         }
     }
 

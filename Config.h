@@ -25,8 +25,11 @@ public:
     const unsigned int GetVerticalResolution();
     const std::string GetMixerKey();
     const std::string GetNodeAppPath();
+    const std::string GetNodeHttpsKeyPath();
+    const std::string GetNodeHttpsCertPath();
     const bool GetNoStream();
     const bool GetNoMupen();
+    const bool GetNoNode();
 
 private:
     /* Private methods */
@@ -38,6 +41,9 @@ private:
     unsigned int verticalResolution = 720;
     std::string mixerKey;
     std::string nodeAppPath;
+    std::string nodeHttpsKeyPath;
+    std::string nodeHttpsCertPath;
     bool noStream = false;
     bool noMupen = false;
+    bool noNode = false;
 };

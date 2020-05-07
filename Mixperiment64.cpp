@@ -18,7 +18,13 @@ Mixperiment64::Mixperiment64(std::shared_ptr<Config> config) :
             config->GetVerticalResolution(),
             config->GetMixerKey());
     }
-    this->nodeManager = std::make_unique<NodeManager>(config->GetNodeAppPath());
+    if (this->config->GetNoNode() == false)
+    {
+        this->nodeManager = std::make_unique<NodeManager>(
+            config->GetNodeAppPath(),
+            config->GetNodeHttpsKeyPath(),
+            config->GetNodeHttpsCertPath());
+    }
     std::vector<Rom> roms = config->GetRoms();
     if (roms.size() <= 0)
     {
